@@ -1,5 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const middlwareTalker = require('./middlwares/middlwareTalker');
+
+// const router = express.Router();
 
 const app = express();
 app.use(bodyParser.json());
@@ -11,6 +14,9 @@ const PORT = '3000';
 app.get('/', (_request, response) => {
   response.status(HTTP_OK_STATUS).send();
 });
+
+// endpoint do requisito 1 
+app.get('/talker', middlwareTalker);
 
 app.listen(PORT, () => {
   console.log('Online');
