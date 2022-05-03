@@ -47,7 +47,14 @@ app.post('/login', validateEmailAndPas, login);
  validateAddTalker);
 
 // endpoint requisito 6 
-app.put('/talker/:id', validateTalkerId);
+app.put('/talker/:id', 
+validateAuthorization,
+validateName,
+validateAge, 
+validateTalkAnd, 
+validateWatcheadAt,
+validateRate,
+validateTalkerId);
 
 app.listen(PORT, () => {
   console.log('Online');
