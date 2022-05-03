@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { getTalker, talkerId } = require('./middlwares/middlwareTalker');
+const login = require('./middlwares/loginMiddlware');
 
 // const router = express.Router();
 
@@ -20,6 +21,9 @@ app.get('/talker', getTalker);
 
 // endpoint requisito 2 
 app.get('/talker/:id', talkerId);
+
+// endpoint requisito 3 
+app.post('/login', login);
 
 app.listen(PORT, () => {
   console.log('Online');
