@@ -1,7 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { getTalker, talkerId } = require('./middlwares/middlwareTalker');
+const { getTalker,
+   talkerId,
+   validateAuthorization,
+   validateName,
+   validateAge,
+   validateTalkAnd,
+   validateWatcheadAt,
+   validateRate,
+   validateAddTalker, 
+  } = require('./middlwares/middlwareTalker');
 const login = require('./middlwares/loginMiddlware');
+const validateTalkerId = require('./middlwares/talkerIdMiddlware');
+const validateEmailAndPas = require('./middlwares/middlwarevalidlogin');
 
 // const router = express.Router();
 
@@ -23,7 +34,20 @@ app.get('/talker', getTalker);
 app.get('/talker/:id', talkerId);
 
 // endpoint requisito 3 
-app.post('/login', login);
+app.post('/login', validateEmailAndPas, login);
+
+// endpoint requisito 5
+ app.post('/talker', 
+ validateAuthorization, 
+ validateName, 
+ validateAge, 
+ validateTalkAnd, 
+ validateWatcheadAt,
+ validateRate,
+ validateAddTalker);
+
+// endpoint requisito 6 
+app.put('/talker/:id', validateTalkerId);
 
 app.listen(PORT, () => {
   console.log('Online');
