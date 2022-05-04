@@ -13,6 +13,7 @@ const { getTalker,
 const login = require('./middlwares/loginMiddlware');
 const validateTalkerId = require('./middlwares/talkerIdMiddlware');
 const validateEmailAndPas = require('./middlwares/middlwarevalidlogin');
+const talkerDelete = require('./middlwares/deleteMiddlware');
 
 // const router = express.Router();
 
@@ -55,6 +56,8 @@ validateTalkAnd,
 validateWatcheadAt,
 validateRate,
 validateTalkerId);
+
+app.delete('/talker/:id', validateAuthorization, talkerDelete);
 
 app.listen(PORT, () => {
   console.log('Online');
